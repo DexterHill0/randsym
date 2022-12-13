@@ -6,7 +6,7 @@ Creates unique identifiers for macros.
 [<img alt="crates.io" src="https://img.shields.io/crates/v/randsym.svg?style=for-the-badge&color=fc8d62&logo=rust" height="20">](https://crates.io/crates/randsym)
 [<img alt="docs.rs" src="https://img.shields.io/badge/docs.rs-randsym-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs" height="20">](https://docs.rs/randsym)
 
-`randsym` generates unique identifiers using UUID. The identifies can be used simply to avoid two items with the same identifier, or they can be bound to names allowing the identifiers to be repeated.
+`randsym` generates unique identifiers using UUID. The unique identifiers can be used to simply avoid conflicts between items that may otherwise have had the same identifier, as well as being bound to names allowing the same identifiers to be repeated.
 
 The syntax is as follows:
 
