@@ -59,11 +59,8 @@ use uuid::Uuid;
 ///     println!("{}", /?@my_fn/()); // "I have a random name!"
 /// }
 /// ```
-#[proc_macro]
-pub fn randsym(input: TokenStream) -> TokenStream {
-    let mut named_syms = HashMap::new();
-
-    let mut tokens = input.into_iter().peekable();
+fn replace_syms(tokens: TokenStream, named_syms: &mut HashMap<String, Ident>) -> TokenStream {
+    let mut tokens = tokens.into_iter().peekable();
     let mut out = TokenStream::new();
 
     loop {
@@ -103,12 +100,22 @@ pub fn randsym(input: TokenStream) -> TokenStream {
                 }
                 _ => p1.clone(),
             },
+            Some(TT::Group(group)) => {
+                Group::new(group.delimiter(), replace_syms(group.stream(), named_syms)).into()
+            }
             Some(tok) => tok,
             None => break,
         }))
     }
 
     out
+}
+
+#[proc_macro]
+pub fn randsym(input: TokenStream) -> TokenStream {
+    let mut named_syms = HashMap::new();
+
+    replace_syms(input, &mut named_syms)
 }
 
 // generate random ident using simple uuid
