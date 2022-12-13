@@ -2,6 +2,12 @@
 name = "randsym"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
+description = "Generates unique identifiers for macros"
+repository = "https://github.com/DexterHill0/randsym"
+keywords = ["macros"]
+categories = ["development-tools"]
+authors = ["Dexter Hill <@DexterHill0>"]
 
 [lib]
 proc-macro = true
